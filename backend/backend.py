@@ -4,6 +4,9 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+#routes
+import document
+
 import os
 import shutil
 import uvicorn
@@ -11,6 +14,9 @@ import uvicorn
 load_dotenv()
 
 app = FastAPI()
+
+app.include_router(upload_router)
+
 
 origins = [
     '*'
@@ -28,10 +34,6 @@ app.add_middleware(
 @app.get("/")
 async def api_entry():
     return {"Welcome": "Ally API"}
-
-@app.post("/upload-csv/")
-async def upload_csv(file: UploadFile = File(...)):
-    return {"Function": "Function"}
 
 def main():
     try:
