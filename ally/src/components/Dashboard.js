@@ -1,6 +1,8 @@
+// src/components/Dashboard.js
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import MyCalendar from "./MyCalendar";
 
 function Dashboard() {
   const { user } = useAuth();
@@ -8,23 +10,27 @@ function Dashboard() {
     <div style={{ padding: "2rem" }}>
       <h2>Dashboard</h2>
       <p>Welcome, {user ? user.email : "Guest"}!</p>
-      <nav>
+      <nav style={{ marginBottom: "2rem" }}>
         <Link to="/new-record">
-          <button>New Test Record</button>
+          <button style={{ marginRight: "1rem" }}>New Test Record</button>
         </Link>
-        &nbsp;
         <Link to="/timeline">
-          <button>View Timeline</button>
+          <button style={{ marginRight: "1rem" }}>View Timeline</button>
         </Link>
-        &nbsp;
         <Link to="/resources">
-          <button>Resource Locator</button>
+          <button style={{ marginRight: "1rem" }}>Resource Locator</button>
         </Link>
-        &nbsp;
         <Link to="/settings">
-          <button>Settings</button>
+          <button style={{ marginRight: "1rem" }}>Settings</button>
+        </Link>
+        {/* Optional: Calendar link if you also want a dedicated calendar route */}
+        <Link to="/calendar">
+          <button>Calendar</button>
         </Link>
       </nav>
+      <div>
+        <MyCalendar />
+      </div>
     </div>
   );
 }

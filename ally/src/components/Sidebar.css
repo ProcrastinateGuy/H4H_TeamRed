@@ -1,0 +1,30 @@
+.sidebar {
+  background-color: var(--secondary-color);
+  width: 250px;
+  padding: 1rem;
+  height: calc(100vh - 60px); /* Adjust if header height changes */
+  position: fixed;
+  top: 60px; /* This should match the header height */
+  left: 0;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 1rem;
+}
+
+.sidebar a {
+  color: var(--heading-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: var(--primary-color);
+}
