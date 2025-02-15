@@ -1,3 +1,4 @@
+// src/App.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
@@ -8,6 +9,7 @@ import NewRecord from "./components/NewRecord";
 import Timeline from "./components/Timeline";
 import ResourceLocator from "./components/ResourceLocator";
 import Settings from "./components/Settings";
+import MyCalendar from "./components/MyCalendar";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
       <Route path="/timeline" element={<Timeline />} />
       <Route path="/resources" element={<ResourceLocator />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/calendar" element={<MyCalendar />} />
     </Routes>
   );
 }
