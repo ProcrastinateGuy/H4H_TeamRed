@@ -27,9 +27,8 @@ app.add_middleware(
 
 @app.get("/")
 async def api_entry():
-    return {"Welcome": "AutomatedCaller API"}
+    return {"Welcome": "Ally API"}
 
-# Endpoint to handle CSV upload
 @app.post("/upload-csv/")
 async def upload_csv(file: UploadFile = File(...)):
     return {"Function": "Function"}
