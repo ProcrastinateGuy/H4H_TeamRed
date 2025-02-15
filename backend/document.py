@@ -1,4 +1,4 @@
-from fastapi import APIRouter, FastAPI, FIle, UploadFile
+from fastapi import APIRouter, FastAPI, File, UploadFile
 from config import UPLOAD_DIRECTORY  #  config for everyone's files
 import shutil
 import os
