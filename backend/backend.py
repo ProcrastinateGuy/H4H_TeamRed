@@ -15,7 +15,6 @@ load_dotenv()
 
 app = FastAPI()
 
-app.include_router(upload_router)
 
 
 origins = [
@@ -34,6 +33,11 @@ app.add_middleware(
 @app.get("/")
 async def api_entry():
     return {"Welcome": "Ally API"}
+
+@app.post("/upload/")
+async def upload(file: UploadFile = File(...)):  
+    """Calls the upload_file function from document.py."""
+    return await document.upload_file(file)
 
 def main():
     try:

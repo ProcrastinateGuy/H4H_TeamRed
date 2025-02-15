@@ -3,13 +3,11 @@ from config import UPLOAD_DIRECTORY  #  config for everyone's files
 import shutil
 import os
 
-app = FastAPI()
-
 UPLOAD_DIRECTORY = "uploads"
 
-router = APIRouter()
-@router.post("/upload/")
-#Handles file uploads and saves the file.
+async def api_entry():
+    return {"Welcome": "Ally API"}
+
 async def upload_file(file: UploadFile = File(...)):
     file_path = os.path.join(UPLOAD_DIRECTORY, file.filename)
     
