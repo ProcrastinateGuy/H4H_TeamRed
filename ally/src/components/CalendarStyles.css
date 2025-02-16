@@ -40,6 +40,7 @@
 
 .event-form button {
   padding: 0.5rem 1rem;
+  font-size: 1rem;
   border: none;
   border-radius: var(--border-radius);
   background-color: var(--primary-color);
@@ -51,3 +52,39 @@
 .event-form button:hover {
   background-color: var(--button-hover);
 }
+
+.react-calendar__tile--active {
+  background-color: var(--primary-color); /* Use theme color */
+  color: white; /* Ensure text is visible */
+  border-radius: 50%; /* Makes it a perfect circle */
+  width: 40px; /* Adjust size */
+  height: 40px; /* Adjust size */
+  display: flex;
+  align-items: center;
+  padding: 0;
+  justify-content: center;
+  margin: auto;
+}
+
+.react-calendar__tile--active:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.react-calendar__navigation {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  padding: 10px;
+}
+
+.react-calendar__navigation button {
+  color: white;
+  font-weight: bold;
+}
+
+/* Optional: Hover effect */
+.react-calendar__navigation button:hover {
+  background-color: var(--button-hover);
+}
+
