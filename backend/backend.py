@@ -43,7 +43,7 @@ async def upload(file: UploadFile = File(...)):
 async def create_event(event: calend.EventSchema):
     try:
         # Generate follow-up reminders based on the interval and start date
-        calend.add_followup_reminder()
+        event.add_followup_reminder()
 
         # Return the event data with generated follow-ups
         return JSONResponse(content={
@@ -56,6 +56,9 @@ async def create_event(event: calend.EventSchema):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+@app.get("/get_events/")
+async def get_events():
+    return calend.load_events()
 
 def main():
     try:
