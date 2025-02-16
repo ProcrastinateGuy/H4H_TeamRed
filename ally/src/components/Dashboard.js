@@ -1,36 +1,67 @@
-// src/components/Dashboard.js
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
 import MyCalendar from "./MyCalendar";
+import "./Dashboard.css";
 
 function Dashboard() {
   const { user } = useAuth();
+  const [latestTest, setLatestTest] = useState(null);
+
+  // Retrieve stored test records from localStorage when the component mounts.
+  useEffect(() => {
+    // Assumes records are stored in localStorage as a JSON array of objects,
+    // e.g., [{ date: "2025-01-15", result: "Negative" }, ...]
+    const storedRecords = JSON.parse(localStorage.getItem("records") || "[]");
+    if (storedRecords.length > 0) {
+      // Get the latest test record (assuming they're stored in order)
+      setLatestTest(storedRecords[storedRecords.length - 1]);
+    }
+  }, []);
+
+  // Placeholder values for the appointment and medication sections.
+  // You can later update these to load dynamic data similarly.
+  const nextAppointment = {
+    date: "No upcoming appointment",
+    type: "",
+  };
+
+  const currentMedication = "No current medication";
+
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Dashboard</h2>
-      <p>Welcome, {user ? user.email : "Guest"}!</p>
-      <nav style={{ marginBottom: "2rem" }}>
-        <Link to="/new-record">
-          <button style={{ marginRight: "1rem" }}>New Test Record</button>
-        </Link>
-        <Link to="/timeline">
-          <button style={{ marginRight: "1rem" }}>View Timeline</button>
-        </Link>
-        <Link to="/resources">
-          <button style={{ marginRight: "1rem" }}>Resource Locator</button>
-        </Link>
-        <Link to="/settings">
-          <button style={{ marginRight: "1rem" }}>Settings</button>
-        </Link>
-        {/* Optional: Calendar link if you also want a dedicated calendar route */}
-        <Link to="/calendar">
-          <button>Calendar</button>
-        </Link>
-      </nav>
-      <div>
-        <MyCalendar />
-      </div>
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Welcome, {user ? user.email : "Guest"}!</p>
+      </header>
+
+      <section className="summary-section">
+        <div className="summary-card">
+          <h2>Latest Test</h2>
+          {latestTest ? (
+            <>
+              <p>{latestTest.date}</p>
+              <p>{latestTest.result}</p>
+            </>
+          ) : (
+            <p>No test records available.</p>
+          )}
+        </div>
+        <div className="summary-card">
+          <h2>Next Appointment</h2>
+          <p>{nextAppointment.date}</p>
+          {nextAppointment.type && <p>{nextAppointment.type}</p>}
+        </div>
+        <div className="summary-card">
+          <h2>Medication</h2>
+          <p>{currentMedication}</p>
+        </div>
+      </section>
+
+      <section className="calendar-section">
+        <div className="calendar-wrapper">
+          <MyCalendar />
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,13 +1,13 @@
 /* Ally - Refined Global Styles with Responsive Design */
 
 :root {
-  --primary-color: #dc6170; /* Warm accent */
-  --secondary-color: #fff1b3; /* Soft, calming accent */
-  --background-color: #ffffff; /* Clean and bright */
-  --text-color: #333333; /* Dark gray for readability */
-  --heading-color: #222222; /* Slightly darker for headings */
+  --primary-color: #dc6170;
+  --secondary-color: #fff1b3;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --heading-color: #222222;
   --link-color: var(--primary-color);
-  --button-hover: #c05563; /* Darker variant for hover */
+  --button-hover: #c05563;
   --border-radius: 6px;
   --font-family: "Nunito", sans-serif;
   --max-width: 1200px;
@@ -25,9 +25,10 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
-  padding: 1rem;
+
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
 }
 

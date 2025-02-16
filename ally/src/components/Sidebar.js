@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 import "./Sidebar.css";
 
 const Sidebar = ({ open, toggleSidebar }) => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    toggleSidebar();
+    navigate("/"); // Redirect to home (or login) page after logout
+  };
+
   return (
     <aside className={`sidebar ${open ? "open" : ""}`}>
       <button className="sidebar-close" onClick={toggleSidebar}>
@@ -39,6 +49,11 @@ const Sidebar = ({ open, toggleSidebar }) => {
             <Link to="/settings" onClick={toggleSidebar}>
               Settings
             </Link>
+          </li>
+          <li>
+            <button className="logout-btn" onClick={handleLogout}>
+              Log Out
+            </button>
           </li>
         </ul>
       </nav>
