@@ -12,9 +12,8 @@
 .dashboard-header {
   width: 100%;
   margin-bottom: 2rem;
-  border: 2px solid var(--primary-color); /* Adds a border */
   padding: 1rem; /* Adds inner spacing */
-  border-radius: var(--border-radius); /* Optional: rounds the corners */
+  margin-top: 2rem;
 }
 
 .dashboard-header h1 {

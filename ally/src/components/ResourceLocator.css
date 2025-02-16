@@ -1,0 +1,49 @@
+/* ResourceLocator.css */
+.resource-locator-container {
+  margin-top: 10rem; /* adds margin on top */
+  max-width: 800px;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border: 3px dashed var(--secondary-color);
+  border-radius: var(--border-radius);
+
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+.resource-locator-container h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.resource-locator-container p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.resource-locator-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.resource-locator-container li {
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.resource-locator-container li:last-child {
+  border-bottom: none;
+}
+
+.resource-locator-container a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.resource-locator-container a:hover {
+  color: var(--button-hover);
+}

@@ -1,0 +1,51 @@
+/* DocumentVault.css */
+.document-vault-container {
+  margin-top: 10rem; /* adds margin on top */
+  max-width: 800px;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border: 3px dashed var(--secondary-color);
+  border-radius: var(--border-radius);
+
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+.document-vault-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.document-vault-container input[type="file"] {
+  margin: 1rem 0;
+}
+
+.document-vault-container button {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.document-vault-container button:hover {
+  background-color: var(--button-hover);
+}
+
+.document-vault-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.document-vault-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--secondary-color);
+}

@@ -22,7 +22,7 @@ function LandingPage() {
       >
         <div className="hero-overlay">
           <h1>Welcome to Ally</h1>
-          <p>Your discreet partner in managing sexual health.</p>
+          <p>Your Health, Your Privacy, Your Control.</p>
           <div className="cta-buttons">
             <Link to="/login">
               <button className="primary-btn">Login</button>

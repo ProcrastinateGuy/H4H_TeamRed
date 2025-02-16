@@ -1,0 +1,33 @@
+/* Settings.css */
+.settings-container {
+  margin-top: 10rem; /* adds margin on top */
+  width: 400px;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border: 3px dashed var(--secondary-color);
+  border-radius: var(--border-radius);
+
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+.settings-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.settings-container button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings-container button:hover {
+  background-color: var(--button-hover);
+}

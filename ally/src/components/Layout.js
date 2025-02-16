@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import { Outlet } from "react-router-dom";
 import "./Layout.css";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -15,7 +16,9 @@ const Layout = ({ children }) => {
     <div className="layout">
       <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
-      <main className="main-content">{children}</main>
+      <main className="main-content">
+        <Outlet />
+      </main>
     </div>
   );
 };

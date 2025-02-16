@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./Settings.css";
 
 function Settings() {
   const { logout } = useAuth();
@@ -12,7 +13,7 @@ function Settings() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="settings-container">
       <h2>Settings</h2>
       <button onClick={handleLogout}>Logout</button>
     </div>
