@@ -2,28 +2,43 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = ({ open }) => {
+const Sidebar = ({ open, toggleSidebar }) => {
   return (
     <aside className={`sidebar ${open ? "open" : ""}`}>
+      <button className="sidebar-close" onClick={toggleSidebar}>
+        ←
+      </button>
       <nav>
         <ul>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard" onClick={toggleSidebar}>
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link to="/new-record">New Test Record</Link>
+            <Link to="/new-record" onClick={toggleSidebar}>
+              New Test Record
+            </Link>
           </li>
           <li>
-            <Link to="/timeline">Timeline</Link>
+            <Link to="/timeline" onClick={toggleSidebar}>
+              Timeline
+            </Link>
           </li>
           <li>
-            <Link to="/resources">Resource Locator</Link>
+            <Link to="/resources" onClick={toggleSidebar}>
+              Resource Locator
+            </Link>
           </li>
           <li>
-            <Link to="/calendar">Calendar</Link>
+            <Link to="/calendar" onClick={toggleSidebar}>
+              Calendar
+            </Link>
           </li>
           <li>
-            <Link to="/settings">Settings</Link>
+            <Link to="/settings" onClick={toggleSidebar}>
+              Settings
+            </Link>
           </li>
         </ul>
       </nav>

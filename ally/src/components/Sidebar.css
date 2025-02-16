@@ -2,23 +2,37 @@
   background-color: var(--secondary-color);
   width: 250px;
   padding: 1rem;
-  height: calc(100vh - 60px); /* 60px should match header height */
+  height: 100vh;
   position: fixed;
-  top: 60px; /* below header */
+  top: 0;
   right: 0;
   overflow-y: auto;
-  transform: translateX(100%); /* Hidden off-canvas */
+  transform: translateX(100%); /* Hidden off-canvas initially */
   transition: transform 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 1100; /* Higher than header */
 }
 
 .sidebar.open {
   transform: translateX(0); /* Slides in when open */
 }
 
+/* Close button inside sidebar */
+.sidebar-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--heading-color);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+  z-index: 1200; /* Ensure it's on top of other elements */
+}
+
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin-top: 3rem; /* Provide space below the close button */
 }
 
 .sidebar li {

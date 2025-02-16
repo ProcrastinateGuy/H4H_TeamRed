@@ -2,27 +2,26 @@
   background-color: var(--primary-color);
   color: var(--background-color);
   padding: 1rem;
-  text-align: center;
-  border-radius: var(--border-radius);
-  margin-bottom: 1.5rem;
-  position: relative;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900; /* Lower than sidebar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header h1 {
   font-size: 2rem;
   margin: 0;
   color: white;
-  text-align: left;
 }
 
-/* Sidebar toggle button */
 .sidebar-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 20%;
   background: none;
   border: none;
   color: var(--background-color);
-  font-size: 1.5rem;
+  font-size: 2rem; /* Bigger icon */
   cursor: pointer;
 }
