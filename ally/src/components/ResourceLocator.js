@@ -21,6 +21,9 @@ function ResourceLocator() {
           </a>
         </li>
       </ul>
+      <div className="map-container">
+        <img src="/map.png" alt="Google Map Location" className="map-image" />
+      </div>
     </div>
   );
 }
