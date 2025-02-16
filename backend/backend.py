@@ -6,8 +6,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 #routes
 import document
-from calend import EventSchema  # Import EventSchema explicitly
-from backend import calend
+import calend  # Import EventSchema explicitly
 
 
 import os
@@ -19,7 +18,8 @@ load_dotenv()
 app = FastAPI()
 
 origins = [
-    '*'
+    "http://localhost:3000",  
+    "http://localhost:4000",
 ]
 
 app.add_middleware(
@@ -42,19 +42,29 @@ async def upload(file: UploadFile = File(...)):
 @app.post("/create_event/")
 async def create_event(event: calend.EventSchema):
     try:
-        # Generate follow-up reminders based on the interval and start date
-        event.add_followup_reminder()
+        # Log the received event
+        print("Received event:", event.dict())
 
-        # Return the event data with generated follow-ups
-        return JSONResponse(content={
+        # Generate follow-up reminders based on the interval and start date
+        event.add_followup_reminder(event.start)
+
+        # Convert datetime objects to ISO format
+        event_data = {
             "title": event.title,
-            "start": event.start,
-            "end": event.end,
+            "start": event.start.isoformat(),
+            "end": event.end.isoformat(),
             "followup_reminders": [reminder.isoformat() for reminder in event.followup_reminders],
             "notes": event.notes
-        })
+        }
+
+        # Return the event data with generated follow-ups
+        return JSONResponse(content=event_data)
     except ValueError as e:
+        print("ValueError:", str(e))
         raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        print("Internal Server Error:", str(e))
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/get_events/")
 async def get_events():
