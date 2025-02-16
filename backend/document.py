@@ -17,7 +17,7 @@ async def upload_file(file: UploadFile = File(...)):
         file.file.close() #close the clone file
 
     tmp = Encryption(file_path)
-    f = open("Encrypted.txt", "w")
+    f = open(eFile_path, "w")
     f.write(tmp.encrypt()) # will return an encrypted string of the cloned file
     f.close()
 
