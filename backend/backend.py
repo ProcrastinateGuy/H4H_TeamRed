@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 #routes
 import document
 from calend import EventSchema  # Import EventSchema explicitly
+from backend import calend
 
 
 import os
