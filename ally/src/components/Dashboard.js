@@ -7,19 +7,14 @@ function Dashboard() {
   const { user } = useAuth();
   const [latestTest, setLatestTest] = useState(null);
 
-  // Retrieve stored test records from localStorage when the component mounts.
+  // Load test records from localStorage when the component mounts
   useEffect(() => {
-    // Assumes records are stored in localStorage as a JSON array of objects,
-    // e.g., [{ date: "2025-01-15", result: "Negative" }, ...]
     const storedRecords = JSON.parse(localStorage.getItem("records") || "[]");
     if (storedRecords.length > 0) {
-      // Get the latest test record (assuming they're stored in order)
       setLatestTest(storedRecords[storedRecords.length - 1]);
     }
   }, []);
 
-  // Placeholder values for the appointment and medication sections.
-  // You can later update these to load dynamic data similarly.
   const nextAppointment = {
     date: "No upcoming appointment",
     type: "",
@@ -58,6 +53,7 @@ function Dashboard() {
       </section>
 
       <section className="calendar-section">
+        <h2>Calendar</h2>
         <div className="calendar-wrapper">
           <MyCalendar />
         </div>

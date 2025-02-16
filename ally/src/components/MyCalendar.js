@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import axios from 'axios';
 import "react-calendar/dist/Calendar.css";
 import "./CalendarStyles.css"; // Optional custom styles
 
-const apiUrl = 'http://localhost:4000';
+const apiUrl = "http://localhost:4000";
 
 function MyCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [events, setEvents] = useState({});
   const [newEvent, setNewEvent] = useState("");
-  const [newEventTitle, setNewEventTitle] = useState(""); 
-  const [followupReminders, setFollowupReminders] = useState([]); 
-  const [startTime, setStartTime] = useState("12:00"); 
+  const [newEventTitle, setNewEventTitle] = useState("");
+  const [followupReminders, setFollowupReminders] = useState([]);
+  const [startTime, setStartTime] = useState("12:00");
   const [endTime, setEndTime] = useState("13:00");
 
   // Load events from localStorage (if any) on component mount
@@ -38,11 +37,15 @@ function MyCalendar() {
   const handleAddEvent = async (e) => {
     e.preventDefault();
     const dateKey = selectedDate.toISOString();
-    const startDateTime = new Date(`${dateKey.split("T")[0]}T${startTime}:00Z`).toISOString();
-    const endDateTime = new Date(`${dateKey.split("T")[0]}T${endTime}:00Z`).toISOString();
-    
+    const startDateTime = new Date(
+      `${dateKey.split("T")[0]}T${startTime}:00Z`
+    ).toISOString();
+    const endDateTime = new Date(
+      `${dateKey.split("T")[0]}T${endTime}:00Z`
+    ).toISOString();
+
     const updatedEvents = { ...events };
-    
+
     if (!updatedEvents[dateKey]) {
       updatedEvents[dateKey] = [];
     }
@@ -50,25 +53,25 @@ function MyCalendar() {
     updatedEvents[dateKey].push(newEvent);
     setEvents(updatedEvents);
     setNewEvent("");
-    setNewEventTitle(""); 
-    setFollowupReminders([]); 
-    setStartTime("12:00"); 
+    setNewEventTitle("");
+    setFollowupReminders([]);
+    setStartTime("12:00");
     setEndTime("13:00");
-    
+
     try {
       const requestBody = {
         title: newEvent,
         start: startDateTime,
         end: endDateTime,
-        followup_reminders: []
+        followup_reminders: [],
       };
 
       console.log("Request Body:", requestBody);
 
-      const response = await fetch(apiUrl + '/create_event', {
+      const response = await fetch(apiUrl + "/create_event", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
       });
@@ -83,7 +86,6 @@ function MyCalendar() {
 
       const responseData = await response.json();
       console.log("Event created:", responseData);
-
     } catch (Error) {
       console.error("Error adding event:", Error);
       alert("There was an error adding the event. Please try again.");

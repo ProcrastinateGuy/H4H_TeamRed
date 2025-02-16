@@ -5,9 +5,13 @@
 }
 
 .main-content {
-  margin-left: 250px; /* Same width as your sidebar */
+  width: 100%;
+  max-width: 1000px; /* or your desired width */
+  margin: 0 auto; /* centers the container */
   padding: 1rem;
-  margin-top: 60px; /* Height of the header */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ensure children are centered as well */
 }
 
 /* Responsive adjustments */
