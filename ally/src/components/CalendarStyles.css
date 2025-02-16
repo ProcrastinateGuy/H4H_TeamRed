@@ -1,5 +1,8 @@
 /* src/components/CalendarStyles.css */
 .calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 2rem auto;
   max-width: 600px;
   padding: 1rem;
@@ -8,8 +11,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.calendar-wrapper {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
 .event-section {
-  margin-top: 1.5rem;
+  width: 100%;
   padding: 1rem;
   background-color: var(--background-color);
   border-radius: var(--border-radius);
@@ -28,20 +36,25 @@
 
 .event-form {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-.event-form input {
-  flex: 1;
+.event-form input,
+.event-form button {
   padding: 0.5rem;
-  border: 1px solid #ccc;
   border-radius: var(--border-radius);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.event-form input {
+  border: 1px solid #ccc;
 }
 
 .event-form button {
-  padding: 0.5rem 1rem;
+  font-size: 1rem;
   border: none;
-  border-radius: var(--border-radius);
   background-color: var(--primary-color);
   color: var(--background-color);
   cursor: pointer;
@@ -50,4 +63,51 @@
 
 .event-form button:hover {
   background-color: var(--button-hover);
+}
+
+.react-calendar__tile--active {
+  background-color: var(--primary-color); /* Use theme color */
+  color: white; /* The color of selected date */
+  border-radius: 50%; /* Makes it a perfect circle */
+  width: 40px; /* Adjust size */
+  height: 40px; /* Adjust size */
+  display: flex;
+  align-items: center;
+  padding: 0;
+  justify-content: center;
+  margin: auto;
+}
+
+.react-calendar__tile--active:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.react-calendar__navigation {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  padding: 15px 10px;
+  min-height: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.react-calendar__navigation button {
+  color: white;
+  font-weight: bold;
+}
+
+/* Optional: Hover effect */
+.react-calendar__navigation button:hover {
+  background-color: var(--button-hover);
+}
+
+.react-calendar__tile {
+  color: grey;
+}
+
+/* Keep weekends (Saturday & Sunday) red */
+.react-calendar__month-view__days__day--weekend {
+  color: rgba(255, 0, 0, 0.89);
 }

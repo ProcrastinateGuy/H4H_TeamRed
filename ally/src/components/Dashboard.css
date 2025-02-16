@@ -1,0 +1,77 @@
+/* Dashboard.css */
+.dashboard-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-header {
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.dashboard-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1.2rem;
+  color: var(--heading-color);
+}
+
+.summary-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.summary-card {
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  width: 280px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.summary-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.summary-card p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.calendar-section {
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.calendar-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-wrapper {
+  display: inline-block;
+  text-align: center;
+}
+
+.calendar <MyCalendar > {
+  text-align: cetner;
+  flex: center;
+}
