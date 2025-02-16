@@ -6,7 +6,8 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 #routes
 import document
-import calend
+from calend import EventSchema  # Import EventSchema explicitly
+
 
 import os
 import shutil

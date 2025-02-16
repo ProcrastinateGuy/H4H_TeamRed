@@ -13,12 +13,12 @@ class EventSchema(BaseModel):
     title: str
     start: datetime 
     end: datetime  
-    followup_reminders: Optional[List[datetime.datetime]] = [] 
+    followup_reminders: Optional[List[datetime]] = [] 
     interval_type: Optional[str] = "months"
     interval_value: Optional[int] = 3 
     notes: Optional[str] = None
     
-def add_followup_reminder(self, reminder_date: datetime.datetime):
+def add_followup_reminder(self, reminder_date: datetime):
     reminders = []
     current_date = self.start 
 
