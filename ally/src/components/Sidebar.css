@@ -2,11 +2,18 @@
   background-color: var(--secondary-color);
   width: 250px;
   padding: 1rem;
-  height: calc(100vh - 60px); /* Adjust if header height changes */
+  height: calc(100vh - 60px); /* 60px should match header height */
   position: fixed;
-  top: 60px; /* This should match the header height */
-  left: 0;
+  top: 60px; /* below header */
+  right: 0;
   overflow-y: auto;
+  transform: translateX(100%); /* Hidden off-canvas */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Slides in when open */
 }
 
 .sidebar ul {
