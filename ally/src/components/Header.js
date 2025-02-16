@@ -1,16 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ sidebarOpen, toggleSidebar }) => {
+  // Log to ensure toggleSidebar is received
+  console.log("Header rendered. sidebarOpen:", sidebarOpen);
   return (
     <header className="header">
       <h1>Ally</h1>
-      {/* Optional top navigation links */}
-      <nav className="top-nav">
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/settings">Settings</Link>
-      </nav>
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+        {sidebarOpen ? null : "☰"}
+      </button>
     </header>
   );
 };
