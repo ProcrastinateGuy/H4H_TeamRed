@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { encryptData } from "../cryptoUtils";
 import { useNavigate } from "react-router-dom";
+import "./NewRecord.css";
 
 function NewRecord() {
   const [date, setDate] = useState("");
@@ -23,12 +24,11 @@ function NewRecord() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="new-record-container">
       <h2>New Test Record</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Date of Test:</label>
-          <br />
           <input
             type="date"
             value={date}
@@ -38,7 +38,6 @@ function NewRecord() {
         </div>
         <div>
           <label>Test Type:</label>
-          <br />
           <input
             type="text"
             value={testType}
@@ -48,7 +47,6 @@ function NewRecord() {
         </div>
         <div>
           <label>Result:</label>
-          <br />
           <select
             value={result}
             onChange={(e) => setResult(e.target.value)}
@@ -61,7 +59,6 @@ function NewRecord() {
         </div>
         <div>
           <label>Notes:</label>
-          <br />
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)} />
         </div>
         <button type="submit">Save Record</button>

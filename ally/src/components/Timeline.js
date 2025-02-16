@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../AuthContext";
 import { decryptData } from "../cryptoUtils";
+import "./Timeline.css";
 
 function Timeline() {
   const { encryptionKey } = useAuth();
@@ -26,18 +27,18 @@ function Timeline() {
   }, [encryptionKey]);
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="timeline-container">
       <h2>Testing Timeline</h2>
       {records.length === 0 ? (
         <p>No records found.</p>
       ) : (
-        <ul>
+        <ul className="timeline-list">
           {records.map((record, index) => (
             <li key={index}>
               <strong>Date:</strong> {record.date} | <strong>Test Type:</strong>{" "}
               {record.testType} | <strong>Result:</strong> {record.result}
               {record.notes && (
-                <div>
+                <div className="timeline-notes">
                   <strong>Notes:</strong> {record.notes}
                 </div>
               )}

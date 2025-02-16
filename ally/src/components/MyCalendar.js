@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import axios from 'axios';
 import "react-calendar/dist/Calendar.css";
 import "./CalendarStyles.css"; // Optional custom styles
 
-const apiUrl = 'http://localhost:4000';
+const apiUrl = "http://localhost:4000";
 
 function MyCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [events, setEvents] = useState({});
   const [newEvent, setNewEvent] = useState("");
-  const [newEventTitle, setNewEventTitle] = useState(""); 
-  const [followupReminders, setFollowupReminders] = useState([]); 
-  const [startTime, setStartTime] = useState("12:00"); 
+  const [newEventTitle, setNewEventTitle] = useState("");
+  const [followupReminders, setFollowupReminders] = useState([]);
+  const [startTime, setStartTime] = useState("12:00");
   const [endTime, setEndTime] = useState("13:00");
 
   useEffect(() => {
@@ -42,7 +41,7 @@ function MyCalendar() {
     const endDateTime = new Date(`${dateKey}T${endTime}:00Z`).toISOString();
     
     const updatedEvents = { ...events };
-    
+
     if (!updatedEvents[dateKey]) {
       updatedEvents[dateKey] = [];
     }
@@ -55,11 +54,11 @@ function MyCalendar() {
     });
     setEvents(updatedEvents);
     setNewEvent("");
-    setNewEventTitle(""); 
-    setFollowupReminders([]); 
-    setStartTime("12:00"); 
+    setNewEventTitle("");
+    setFollowupReminders([]);
+    setStartTime("12:00");
     setEndTime("13:00");
-    
+
     try {
       const requestBody = {
         title: newEventTitle,
@@ -70,10 +69,10 @@ function MyCalendar() {
 
       console.log("Request Body:", requestBody);
 
-      const response = await fetch(apiUrl + '/create_event', {
+      const response = await fetch(apiUrl + "/create_event", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
       });

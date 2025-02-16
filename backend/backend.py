@@ -4,6 +4,10 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+
+from cryptography.fernet import Fernet
+
+
 #routes
 import document
 import calend  # Import EventSchema explicitly

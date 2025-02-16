@@ -1,8 +1,9 @@
 import React from "react";
+import "./ResourceLocator.css";
 
 function ResourceLocator() {
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="resource-locator-container">
       <h2>Resource Locator</h2>
       <p>This feature helps you find local clinics and testing centers.</p>
       <p>(Demo: static information is provided.)</p>

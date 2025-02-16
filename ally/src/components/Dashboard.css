@@ -1,20 +1,19 @@
 /* Dashboard.css */
 .dashboard-container {
+  width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto; /* centers the container */
   padding: 2rem;
   text-align: center;
   font-family: var(--font-family);
   color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .dashboard-header {
   width: 100%;
   margin-bottom: 2rem;
-  text-align: center;
+  padding: 1rem; /* Adds inner spacing */
+  margin-top: 2rem;
 }
 
 .dashboard-header h1 {
@@ -66,12 +65,9 @@
   margin-bottom: 1rem;
 }
 
+/* Use flexbox to center the calendar component */
 .calendar-wrapper {
-  display: inline-block;
-  text-align: center;
-}
-
-.calendar <MyCalendar > {
-  text-align: cetner;
-  flex: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

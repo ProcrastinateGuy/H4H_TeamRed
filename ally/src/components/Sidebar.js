@@ -46,6 +46,11 @@ const Sidebar = ({ open, toggleSidebar }) => {
             </Link>
           </li>
           <li>
+            <Link to="/vault" onClick={toggleSidebar}>
+              Document Vault
+            </Link>
+          </li>
+          <li>
             <Link to="/settings" onClick={toggleSidebar}>
               Settings
             </Link>
