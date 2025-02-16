@@ -40,7 +40,7 @@ async def upload(file: UploadFile = File(...)):
     return await document.upload_file(file)
 
 @app.post("/create_event/")
-async def create_event(event: EventSchema):
+async def create_event(event: calend.EventSchema):
     try:
         # Generate follow-up reminders based on the interval and start date
         calend.add_followup_reminder()
