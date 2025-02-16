@@ -20,6 +20,7 @@ function NewRecord() {
     const records = JSON.parse(localStorage.getItem("records") || "[]");
     records.push(encryptedRecord);
     localStorage.setItem("records", JSON.stringify(records));
+    window.dispatchEvent(new Event("recordsUpdated"));
     navigate("/timeline");
   };
 

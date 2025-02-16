@@ -6,8 +6,6 @@ import hashlib
 
 UPLOAD_DIRECTORY = "uploads"
 
-async def api_entry():
-    return {"Welcome": "Ally API"}
 
 async def upload_file(file: UploadFile = File(...)):
     file_path = os.path.join(UPLOAD_DIRECTORY, file.filename)

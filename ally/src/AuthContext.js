@@ -3,20 +3,57 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // Try to load persisted user info from localStorage
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  // For encryptionKey: Note that CryptoKey objects are not directly serializable.
-  // In a real app, you might re-derive the key on each login. For now, we'll keep it in memory only.
   const [encryptionKey, setEncryptionKey] = useState(null);
+
+  const generateKey = async () => {
+    return await window.crypto.subtle.generateKey(
+      {
+        name: "AES-GCM",
+        length: 256
+      },
+      true,
+      ["encrypt", "decrypt"]
+    );
+  };
+
+  const importKey = async (rawKey) => {
+    return await window.crypto.subtle.importKey(
+      "raw",
+      rawKey,
+      {
+        name: "AES-GCM"
+      },
+      true,
+      ["encrypt", "decrypt"]
+    );
+  };
+
+  useEffect(() => {
+    const fetchKey = async () => {
+      const storedKey = localStorage.getItem("encryptionKey");
+      if (storedKey) {
+        const rawKey = new Uint8Array(JSON.parse(storedKey));
+        const importedKey = await importKey(rawKey);
+        setEncryptionKey(importedKey);
+      } else {
+        const newKey = await generateKey();
+        const exportedKey = await window.crypto.subtle.exportKey("raw", newKey);
+        localStorage.setItem("encryptionKey", JSON.stringify(Array.from(new Uint8Array(exportedKey))));
+        setEncryptionKey(newKey);
+      }
+    };
+
+    fetchKey();
+  }, []);
 
   const login = (userData, key) => {
     setUser(userData);
     setEncryptionKey(key);
-    // Persist user data (do not persist encryptionKey for security reasons)
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
@@ -24,9 +61,9 @@ export function AuthProvider({ children }) {
     setUser(null);
     setEncryptionKey(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("encryptionKey");
   };
 
-  // Optional: If you want to listen for storage changes across tabs:
   useEffect(() => {
     const handleStorageChange = () => {
       const storedUser = localStorage.getItem("user");
