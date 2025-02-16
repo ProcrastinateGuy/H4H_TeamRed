@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 #routes
 import document
+import calend
 
 import os
 import shutil
@@ -14,8 +15,6 @@ import uvicorn
 load_dotenv()
 
 app = FastAPI()
-
-
 
 origins = [
     '*'
@@ -29,7 +28,6 @@ app.add_middleware(
     allow_headers=["*"],    # Specify allowed HTTP headers (or use wildcard "*")
 )
 
-
 @app.get("/")
 async def api_entry():
     return {"Welcome": "Ally API"}
@@ -38,6 +36,24 @@ async def api_entry():
 async def upload(file: UploadFile = File(...)):  
     """Calls the upload_file function from document.py."""
     return await document.upload_file(file)
+
+@app.post("/create_event/")
+async def create_event(event: EventSchema):
+    try:
+        # Generate follow-up reminders based on the interval and start date
+        calend.add_followup_reminder()
+
+        # Return the event data with generated follow-ups
+        return JSONResponse(content={
+            "title": event.title,
+            "start": event.start,
+            "end": event.end,
+            "followup_reminders": [reminder.isoformat() for reminder in event.followup_reminders],
+            "notes": event.notes
+        })
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
 
 def main():
     try:
