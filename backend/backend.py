@@ -39,8 +39,9 @@ async def upload(file: UploadFile = File(...)):
     """Calls the upload_file function from document.py."""
     return await document.upload_file(file)
 
+
 @app.post("/create_event/")
-async def create_event(event: calend.EventSchema):
+def create_event(event: calend.EventSchema):
     try:
         # Log the received event
         print("Received event:", event.dict())
@@ -57,6 +58,11 @@ async def create_event(event: calend.EventSchema):
             "notes": event.notes
         }
 
+        # Save event to the file
+        events = calend.load_events()  # Load existing events from the JSON file
+        events.append(event_data)  # Append the new event to the list of events
+        calend.save_events(events)  # Save the updated events list back to the JSON file
+
         # Return the event data with generated follow-ups
         return JSONResponse(content=event_data)
     except ValueError as e:
@@ -66,9 +72,17 @@ async def create_event(event: calend.EventSchema):
         print("Internal Server Error:", str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
+
 @app.get("/get_events/")
-async def get_events():
-    return calend.load_events()
+def get_events():
+    events = calend.load_events()
+    events_by_date = {}
+    for event in events:
+        date_key = event['start'].split('T')[0]
+        if date_key not in events_by_date:
+            events_by_date[date_key] = []
+        events_by_date[date_key].append(event)
+    return events_by_date
 
 def main():
     try:
